@@ -2,4 +2,4 @@
 #-------------------------------------------------------------------------------
 
 # Install Git.
-apt-get -y install git
+apt-get -y install git || exit 10
