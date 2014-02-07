@@ -32,5 +32,7 @@ mkdir -p /var/coral/config || exit 66
 :hierarchy:
   - common
 EOP
-) > /etc/puppet/hiera.yaml || exit 67
-chmod 0440 /etc/puppet/hiera.yaml || exit 68
+) > /etc/hiera.yaml || exit 67
+chmod 0440 /etc/hiera.yaml || exit 68
+
+cp /etc/hiera.yaml /etc/puppet/hiera.yaml || exit 69
