@@ -10,8 +10,7 @@ if [ -z "$HELP" ]
 then
 export HELP="
 This script bootstraps a machine with all of the components (packages and 
-configurations) it needs to run the Coral gems and Puppet configuration
-management framework.
+configurations) it needs to run the CORL system.
 
 Systems initialized:
 
@@ -24,7 +23,7 @@ Systems initialized:
          - Puppet and dependencies installed
          - Hiera configured
 
-* Coral  - Coral core gem and dependencies installed
+* CORL  - CORL gem and dependencies installed
 
 --------------------------------------------------------------------------------
 Tested under Ubuntu 12.04 LTS
