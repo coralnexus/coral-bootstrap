@@ -16,5 +16,5 @@ rm -Rf /tmp/corl
 mkdir /tmp/corl || exit 104
 
 git clone --branch 0.4 git://github.com/coralnexus/corl.git /tmp/corl || exit 105
-gem build /tmp/nucleon/corl.gemspec || exit 106
+gem build /tmp/corl/corl.gemspec || exit 106
 gem install /tmp/corl/corl-*.gem || exit 107
