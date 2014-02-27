@@ -8,6 +8,6 @@ update-alternatives --set gem /usr/bin/gem1.9.1 || exit 52
 
 # Set Gem options
 ( cat <<'EOP'
-gem: --no-document
+gem: --no-rdoc --no-ri 
 EOP
 ) > "$HOME/.gemrc" || exit 53
