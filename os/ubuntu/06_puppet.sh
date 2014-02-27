@@ -35,4 +35,4 @@ EOP
 ) > /etc/hiera.yaml || exit 67
 chmod 0440 /etc/hiera.yaml || exit 68
 
-ln -s /etc/hiera.yaml /etc/puppet/hiera.yaml || exit 69
+ln -fs /etc/hiera.yaml /etc/puppet/hiera.yaml || exit 69
