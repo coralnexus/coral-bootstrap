@@ -5,7 +5,7 @@
 echo "$HOSTNAME" > "/etc/hostname" || exit 1
 
 sed -ri 's/127\.0\.1\.1.*//' /etc/hosts
-echo -e "\n127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
+echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
 
 # Update system packages
 apt-get update || exit 3
