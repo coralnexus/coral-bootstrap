@@ -14,4 +14,4 @@ echo "nameserver 208.67.222.222" | tee /etc/resolvconf/resolv.conf.d/base > /dev
 apt-get update || exit 4
 
 # Install basic build packages.
-apt-get -y install build-essential || exit 5
+apt-get -y install build-essential curl || exit 5
