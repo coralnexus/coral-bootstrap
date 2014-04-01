@@ -2,7 +2,8 @@
 #-------------------------------------------------------------------------------
 
 # Set up Puppet Apt repositories
-apt-key adv --recv-key --keyserver pgp.mit.edu 4BD6EC30 || exit 60
+KEY=4BD6EC30
+gpg --recv-keys $KEY && gpg --armor --export $KEY | apt-key add - || exit 60
 
 ( cat <<'EOP'
 deb http://apt.puppetlabs.com precise main dependencies
