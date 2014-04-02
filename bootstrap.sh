@@ -16,6 +16,9 @@ Systems initialized:
 
 * Git    - Git packages installed
 
+* Vim    - Vim and vim script packages installed
+         - Vim configured
+
 * Ruby   - Ruby 1.9.x packages installed
          - Execution alternative configuration (if applicable)
 
@@ -29,8 +32,8 @@ Systems initialized:
 Tested under Ubuntu 12.04 LTS
 Licensed under GPLv3
 
-See the project page at: http://github.com/coralnexus/coral-bootstrap
-Report issues here:      http://github.com/coralnexus/coral-bootstrap/issues
+See the project page at: http://github.com/coralnexus/corl-bootstrap
+Report issues here:      http://github.com/coralnexus/corl-bootstrap/issues
 "
 fi
 
