@@ -2,12 +2,14 @@
 #-------------------------------------------------------------------------------
 
 # Install Ruby.
-apt-get -y install ruby1.9.1 ruby1.9.1-dev || exit 50
-update-alternatives --set ruby /usr/bin/ruby1.9.1 || exit 51
-update-alternatives --set gem /usr/bin/gem1.9.1 || exit 52
+add-apt-repository ppa:brightbox/ruby-ng-experimental
+
+apt-get -y install ruby2.1 ruby2.1-dev || exit 51
+update-alternatives --set ruby /usr/bin/ruby2.1 || exit 52
+update-alternatives --set gem /usr/bin/gem2.1 || exit 53
 
 # Set Gem options
 ( cat <<'EOP'
 gem: --no-rdoc --no-ri 
 EOP
-) > "$HOME/.gemrc" || exit 53
+) > "$HOME/.gemrc" || exit 54
