@@ -13,7 +13,7 @@ chmod 0644 /etc/apt/sources.list.d/puppet.list || exit 62
 
 # Install Puppet
 apt-get -y update || exit 63
-apt-get -y install puppet || exit 64
+apt-get -y install puppet=3.4.3-1puppetlabs1 || exit 64
 
 # Set up Hiera configuration
 mkdir -p /var/corl/config || exit 65
