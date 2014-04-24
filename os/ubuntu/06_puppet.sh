@@ -5,15 +5,15 @@
 apt-key adv --recv-key --keyserver pgp.mit.edu 4BD6EC30 2>&1 || exit 60
 
 ( cat <<'EOP'
-deb http://apt.puppetlabs.com precise main dependencies
-deb-src http://apt.puppetlabs.com precise main dependencies
+deb http://apt.puppetlabs.com trusty main dependencies
+deb-src http://apt.puppetlabs.com trusty main dependencies
 EOP
 ) > /etc/apt/sources.list.d/puppet.list || exit 61
 chmod 0644 /etc/apt/sources.list.d/puppet.list || exit 62
 
 # Install Puppet
 apt-get -y update || exit 63
-apt-get -y install puppet-common=3.4.3-1puppetlabs1 puppet=3.4.3-1puppetlabs1 || exit 64
+apt-get -y install puppet-common=3.4.3-1 puppet=3.4.3-1 || exit 64
 
 # Set up Hiera configuration
 mkdir -p /var/corl/config || exit 65
