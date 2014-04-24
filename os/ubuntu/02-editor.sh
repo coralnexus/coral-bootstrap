@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------------------
 
 # Install Vim editor.
-apt-get -y install vim vim-scripts || exit 20
+apt-get -y install vim || exit 20
 
 # Set Vim options
 ( cat <<'EOP'
