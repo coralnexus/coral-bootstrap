@@ -15,8 +15,7 @@ esac
 # Set up Puppet Apt repositories
 apt-key adv --recv-key --keyserver pgp.mit.edu 4BD6EC30 2>&1 || exit 60
 
-echo -e "deb http://apt.puppetlabs.com $OS_NAME main dependencies\ndeb-src
-http://apt.puppetlabs.com $OS_NAME main dependencies" | cat > /etc/apt/sources.list.d/corl_puppet.list || exit 61
+echo -e "deb http://apt.puppetlabs.com $OS_NAME main dependencies\ndeb-src http://apt.puppetlabs.com $OS_NAME main dependencies" | cat > /etc/apt/sources.list.d/corl_puppet.list || exit 61
 chmod 0644 /etc/apt/sources.list.d/corl_puppet.list || exit 62
 
 # Install Puppet
