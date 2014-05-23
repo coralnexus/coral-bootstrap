@@ -23,8 +23,10 @@ apt-get -y update || exit 63
 
 apt-get -y install puppet-common="$PUPPET_PACKAGE" puppet="$PUPPET_PACKAGE" || exit 64
 
+chown -R root:puppet /var/lib/puppet || exit 65
+
 # Set up Hiera configuration
-mkdir -p /var/corl/config || exit 65
+mkdir -p /var/corl/config || exit 66
 
 if [ ! -e /etc/hiera.yaml ]
 then
@@ -41,11 +43,11 @@ then
 :hierarchy:
   - common
 EOP
-) > /etc/hiera.yaml || exit 66
-chmod 0440 /etc/hiera.yaml || exit 67
+) > /etc/hiera.yaml || exit 67
+chmod 0440 /etc/hiera.yaml || exit 68
 fi
 
 if [ ! -e /etc/puppet/hiera.yaml ]
 then
-    ln -fs /etc/hiera.yaml /etc/puppet/hiera.yaml || exit 68
+    ln -fs /etc/hiera.yaml /etc/puppet/hiera.yaml || exit 69
 fi
