@@ -1,14 +1,7 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 
-case "$OS_VERSION" in
-'14.04')
-    PUPPET_PACKAGE="3.6.2-1"
-;;
-'12.04')
-    PUPPET_PACKAGE="3.6.2-1puppetlabs1"
-;;
-esac
+PUPPET_PACKAGE="3.6.2-1puppetlabs1"
 
 #---
 
