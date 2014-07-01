@@ -14,7 +14,7 @@ chmod 0644 /etc/apt/sources.list.d/corl_puppet.list || exit 62
 # Install Puppet
 apt-get -y update || exit 63
 
-apt-get -y install puppet-common="$PUPPET_PACKAGE" puppet="$PUPPET_PACKAGE" || exit 64
+apt-get -y install hiera puppet-common="$PUPPET_PACKAGE" puppet="$PUPPET_PACKAGE" || exit 64
 
 chown -R root:puppet /var/lib/puppet || exit 65
 
