@@ -3,10 +3,10 @@
 
 case "$OS_VERSION" in
 '14.04')
-    PUPPET_PACKAGE="3.4.3-1"
+    PUPPET_PACKAGE="3.6.2-1"
 ;;
 '12.04')
-    PUPPET_PACKAGE="3.4.3-1puppetlabs1"
+    PUPPET_PACKAGE="3.6.2-1puppetlabs1"
 ;;
 esac
 
