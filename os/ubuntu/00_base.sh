@@ -11,8 +11,8 @@ echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
 echo "nameserver 208.67.222.222" | tee /etc/resolvconf/resolv.conf.d/base > /dev/null || exit 3
 
 # Update system packages
-apt-get update || exit 4
-apt-get -y upgrade || exit 5
+apt-get -y install dialog || exit 4
+apt-get update || exit 5
 
 # Install basic build packages.
 apt-get -y install build-essential cmake bindfs libnl-dev libpopt-dev libssl-dev libcurl4-openssl-dev libxslt-dev libxml2-dev || exit 6
