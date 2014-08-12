@@ -2,11 +2,14 @@
 #-------------------------------------------------------------------------------
 
 # Install Vim editor.
-apt-get -y install vim || exit 20
+echo "1. Ensuring Vim editor"
+apt-get -y install vim >/tmp/vim.install.log 2>&1 || exit 20
 
 # Set Vim options
 if [ ! -e "$HOME/.vimrc" ]
 then
+echo "2. Setting default .vimrc configuration"
+	
 ( cat <<'EOP'
 set tabstop=2
 set shiftwidth=2

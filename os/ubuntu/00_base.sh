@@ -2,18 +2,25 @@
 #-------------------------------------------------------------------------------
 
 # Set hostname
+echo "1. Setting hostname"
 echo "$HOSTNAME" > "/etc/hostname" || exit 1
 
+echo "2. Initializing hosts file"
 sed -ri 's/127\.0\.1\.1.*//' /etc/hosts
 echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
 
 # Set OpenDNS as our DNS lookup source
+echo "3. Setting commond DNS gateways"
 echo "nameserver 208.67.222.222" | tee /etc/resolvconf/resolv.conf.d/base > /dev/null || exit 3
 
 # Update system packages
-apt-get -y install dialog || exit 4
-apt-get update || exit 5
+echo "4. Updating system packages"
+apt-get update >/tmp/update.log 2>&1 || exit 5
 
 # Install basic build packages.
-apt-get -y install build-essential cmake bindfs libnl-dev libpopt-dev libssl-dev libcurl4-openssl-dev libxslt-dev libxml2-dev || exit 6
-apt-get -y install python-software-properties unzip curl || exit 7
+echo "5. Ensuring basic libraries and development utilities"
+apt-get -y install build-essential cmake rake bindfs libnl-dev libpopt-dev \
+                   libssl-dev libcurl4-openssl-dev libxslt-dev libxml2-dev \
+                   libyaml-dev libreadline-dev libncurses5-dev zlib1g-dev \
+                   llvm llvm-dev python-software-properties unzip curl bison >/tmp/base.install.log 2>&1 || exit 6
+     
