@@ -5,6 +5,8 @@
 apt-get -y install vim || exit 20
 
 # Set Vim options
+if [ ! -e "$HOME/.vimrc" ]
+then
 ( cat <<'EOP'
 set tabstop=2
 set shiftwidth=2
@@ -24,3 +26,4 @@ filetype plugin indent on
 syntax on
 EOP
 ) > "$HOME/.vimrc" || exit 21
+fi
