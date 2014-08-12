@@ -3,7 +3,10 @@
 
 # For now we install CORL through the repo for testing purposes
 
-gem install nokogiri || exit 100
+if [ `gem list -i nokogiri` != "true" ]
+then
+    gem install nokogiri || exit 100
+fi
 
 # Install the corl gem
 rm -Rf /tmp/corl
