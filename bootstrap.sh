@@ -19,14 +19,14 @@ Systems initialized:
 * Vim    - Vim and vim script packages installed
          - Vim configured
 
-* Ruby   - Ruby 1.9.x packages installed
+* Ruby   - Ruby 2.1.x packages installed
          - Execution alternative configuration (if applicable)
 
 * Puppet - PuppetLabs Apt source initialized (if applicable)
          - Puppet and dependencies installed
          - Hiera configured
 
-* CORL  - CORL gem and dependencies installed
+* CORL   - CORL gem and dependencies installed
 
 --------------------------------------------------------------------------------
 Tested under Ubuntu 12.04 LTS
