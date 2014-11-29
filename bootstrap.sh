@@ -14,19 +14,29 @@ configurations) it needs to run the CORL system.
 
 Systems initialized:
 
-* Git    - Git packages installed
+* Base system - Hostname configured
+              - Hosts file initialized (if applicable)
+              - DNS configured
+              - System package updates
+              - Build package installation
 
-* Vim    - Vim and vim script packages installed
-         - Vim configured
+* Git         - Git packages installed
+              - GitHub added to known hosts
 
-* Ruby   - Ruby 1.9.x packages installed
-         - Execution alternative configuration (if applicable)
+* Editor      - Vim or other base editor packages installed
+              - Vim or other base editor configured
 
-* Puppet - PuppetLabs Apt source initialized (if applicable)
-         - Puppet and dependencies installed
-         - Hiera configured
+* Ruby        - Ruby 2.1.x packages installed
+              - Execution alternative configuration (if applicable)
+              - Ruby Gem options initialized
 
-* CORL  - CORL gem and dependencies installed
+* Puppet      - PuppetLabs Apt source initialized (if applicable)
+              - Puppet and dependencies installed
+              - Hiera configured
+         
+* Nucleon     - Nucleon gem and dependencies installed
+
+* CORL        - CORL gem and dependencies installed
 
 --------------------------------------------------------------------------------
 Tested under Ubuntu 12.04 LTS
@@ -40,8 +50,9 @@ fi
 if [ -z "$USAGE" ]
 then
 export USAGE="
-usage: bootstrap.sh [ -h | --help ]  | Show usage information
+usage: bootstrap.sh  script_name ...   |  Names of bootstrap scripts to run [ ##_(>>script_name<<).sh ] 
 --------------------------------------------------------------------------------
+                     [ -h | --help ]   | Show usage information
 "
 fi
 
@@ -82,13 +93,36 @@ BOOTSTRAP_SCRIPTS="$SCRIPT_DIR/os/$OS/*.sh"
 
 for SCRIPT in $BOOTSTRAP_SCRIPTS
 do
-  echo "Processing: $SCRIPT"
-  source "$SCRIPT"
-  STATUS=$?
-  
+  SCRIPT_MATCH=''
+
+  if [[ "$SCRIPT" =~ _(.+)\.sh$ ]]
+  then
+    SCRIPT_NAME="${BASH_REMATCH[1]}"
+
+    if [ ! -z "$PARAMS" ]
+    then
+      for NAME in ${PARAMS[@]}
+      do
+        if [[ "$NAME" == "$SCRIPT_NAME" ]]
+        then
+          SCRIPT_MATCH='1'
+        fi
+      done
+    else
+      SCRIPT_MATCH='1'
+    fi
+  fi
+
+  if [ ! -z "$SCRIPT_MATCH" ]
+  then
+    echo "Processing: $SCRIPT"
+    source "$SCRIPT"
+    STATUS=$?
+  fi
+
   if [ $STATUS -ne 0 ]
   then
-  	exit $STATUS
+    exit $STATUS
   fi
 done
 exit $STATUS
