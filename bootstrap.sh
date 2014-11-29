@@ -39,7 +39,7 @@ Systems initialized:
 * CORL        - CORL gem and dependencies installed
 
 --------------------------------------------------------------------------------
-Tested under Ubuntu 12.04 LTS
+Tested under Ubuntu 12.04 and 14.04 LTS
 Licensed under GPLv3
 
 See the project page at: http://github.com/coralnexus/corl-bootstrap
