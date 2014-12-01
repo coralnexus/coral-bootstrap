@@ -10,7 +10,7 @@ sed -ri 's/127\.0\.1\.1.*//' /etc/hosts
 echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
 
 # Set OpenDNS as our DNS lookup source
-echo "3. Setting commond DNS gateways"
+echo "3. Setting command DNS gateways"
 echo "nameserver 208.67.222.222" | tee /etc/resolvconf/resolv.conf.d/base > /dev/null || exit 3
 
 # Update system packages
@@ -21,6 +21,6 @@ apt-get update >/tmp/update.log 2>&1 || exit 5
 echo "5. Ensuring basic libraries and development utilities"
 apt-get -y install build-essential cmake rake bindfs libnl-dev libpopt-dev \
                    libssl-dev libcurl4-openssl-dev libxslt-dev libxml2-dev \
-                   libyaml-dev libreadline-dev libncurses5-dev zlib1g-dev \
+                   libyaml-dev libreadline-dev libncurses5-dev zlib1g-dev texinfo \
                    llvm llvm-dev python-software-properties unzip curl bison >/tmp/base.install.log 2>&1 || exit 6
      
