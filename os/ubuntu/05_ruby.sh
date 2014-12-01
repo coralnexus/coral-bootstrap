@@ -48,7 +48,7 @@ initialize_rvm_user 'root'
 for USER_HOME in /home/*/
 do
   [[ "$USER_HOME" =~ ([^/]+)/?$ ]]
-  if [ "${BASH_REMATCH[1]}" != "lost+found" ]
+  if [ "${BASH_REMATCH[1]}" != "lost+found" -a "${BASH_REMATCH[1]}" != "*" ]
   then
     initialize_rvm_user "${BASH_REMATCH[1]}" '/home'
   fi
