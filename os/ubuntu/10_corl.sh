@@ -1,12 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 
-#if [ `gem list -i nokogiri` != "true" ]
-#then
-    # echo "1. Installing Nokogiri"
-    # su - -c "gem install nokogiri" root >/tmp/nokogiri.install.log 2>&1 || exit 100
-#fi
-
 # Uninstall the CORL gem
 
 echo "1. Removing old versions of corl gem"
