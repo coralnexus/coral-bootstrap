@@ -21,7 +21,7 @@ function initialize_rvm_user()
   local SCRIPT_INCLUDE="[[ -s '/usr/local/rvm/scripts/rvm' ]] && source '/usr/local/rvm/scripts/rvm'"
 
   echo "3. Initializing RVM user ${USER_NAME} group and environment settings"
-  adduser "$USER_NAME" rvm >>/tmp/ruby.config.log 2>&1 || exit 53
+  adduser "$USER_NAME" rvm >>/tmp/ruby.config.log 2>&1 || exit 52
   
   if ! grep -Fxq "$PATH_ENTRY" "$PROFILE_FILE" >>/tmp/ruby.config.log 2>&1
   then
@@ -34,14 +34,14 @@ function initialize_rvm_user()
   if ! grep -Fxq "$SCRIPT_INCLUDE" "$BASHRC_FILE" >>/tmp/ruby.config.log 2>&1
   then
     echo "$SCRIPT_INCLUDE" >> "$BASHRC_FILE"
-  fi  
+  fi
 }
 
 echo "1. Fetching RVM keys"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 >/tmp/ruby.config.log 2>&1 || exit 50
 
 echo "2. Installing RVM"
-curl -sL https://get.rvm.io | sudo bash -s stable >>/tmp/ruby.config.log 2>&1 || exit 51
+curl -sL https://get.rvm.io | bash -s stable >>/tmp/ruby.config.log 2>&1 || exit 51
 
 initialize_rvm_user 'root'
 
@@ -55,8 +55,8 @@ do
 done
 
 echo "4. Installing Rubinius -- this will take some time"
-su - -c "rvm install rbx" root >>/tmp/ruby.config.log 2>&1 || exit 54
-su - -c "rvm use rbx --default" root >>/tmp/ruby.config.log 2>&1 || exit 55
+su - -c "rvm install rbx" root >>/tmp/ruby.config.log 2>&1 || exit 53
+su - -c "rvm use rbx --default" root >>/tmp/ruby.config.log 2>&1 || exit 54
 
 
 if [ ! -e "$HOME/.gemrc" ]
@@ -67,5 +67,5 @@ echo "5. Adding an initial .gemrc configuration"
 ( cat <<'EOP'
 gem: --no-rdoc --no-ri 
 EOP
-) > "$HOME/.gemrc" || exit 56
+) > "$HOME/.gemrc" || exit 55
 fi
