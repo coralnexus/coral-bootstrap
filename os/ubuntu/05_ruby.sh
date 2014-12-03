@@ -55,8 +55,8 @@ do
 done
 
 echo "4. Installing Rubinius -- this will take some time"
-su - -c "rvm install rbx" root >>/tmp/ruby.config.log 2>&1 || exit 53
-su - -c "rvm use rbx --default" root >>/tmp/ruby.config.log 2>&1 || exit 54
+su - -c "rvm install rbx-2.3.0 --rubygems 2.4.2" root >>/tmp/ruby.config.log 2>&1 || exit 53
+su - -c "rvm use rbx-2.3.0 --default" root >>/tmp/ruby.config.log 2>&1 || exit 54
 
 
 if [ ! -e "$HOME/.gemrc" ]
