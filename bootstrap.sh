@@ -29,14 +29,11 @@ Systems initialized:
 * Ruby        - Ruby 2.1.x packages installed
               - Execution alternative configuration (if applicable)
               - Ruby Gem options initialized
-
-* Puppet      - PuppetLabs Apt source initialized (if applicable)
-              - Puppet and dependencies installed
-              - Hiera configured
          
 * Nucleon     - Nucleon gem and dependencies installed
 
 * CORL        - CORL gem and dependencies installed
+              - Hiera configured
 
 --------------------------------------------------------------------------------
 Tested under Ubuntu 12.04 and 14.04 LTS
