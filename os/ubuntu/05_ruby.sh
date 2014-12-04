@@ -18,6 +18,8 @@ function initialize_rvm_user()
   
   local PATH_ENTRY='PATH=${PATH}:/usr/local/rvm/bin'
   local RVMSUDO_SECURE_PATH="export rvmsudo_secure_path=1"
+  local SUDO_ALIAS="alias sudo=rvmsudo"
+  
   local SCRIPT_INCLUDE="[[ -s '/usr/local/rvm/scripts/rvm' ]] && source '/usr/local/rvm/scripts/rvm'"
 
   echo "3. Initializing RVM user ${USER_NAME} group and environment settings"
@@ -30,7 +32,11 @@ function initialize_rvm_user()
   if ! grep -Fxq "$RVMSUDO_SECURE_PATH" "$PROFILE_FILE" >>/tmp/ruby.config.log 2>&1
   then
     echo "$RVMSUDO_SECURE_PATH" >> "$PROFILE_FILE"
-  fi  
+  fi
+  if ! grep -Fxq "$SUDO_ALIAS" "$PROFILE_FILE" >>/tmp/ruby.config.log 2>&1
+  then
+    echo "$SUDO_ALIAS" >> "$PROFILE_FILE"
+  fi   
   if ! grep -Fxq "$SCRIPT_INCLUDE" "$BASHRC_FILE" >>/tmp/ruby.config.log 2>&1
   then
     echo "$SCRIPT_INCLUDE" >> "$BASHRC_FILE"
@@ -59,7 +65,7 @@ su - -c "rvm install rbx-2.3.0 --rubygems 2.4.2" root >>/tmp/ruby.config.log 2>&
 su - -c "rvm use rbx-2.3.0 --default" root >>/tmp/ruby.config.log 2>&1 || exit 54
 
 
-if [ ! -e "$HOME/.gemrc" ]
+if [ ! -e "/root/.gemrc" ]
 then
 echo "5. Adding an initial .gemrc configuration"
 
@@ -67,5 +73,5 @@ echo "5. Adding an initial .gemrc configuration"
 ( cat <<'EOP'
 gem: --no-rdoc --no-ri 
 EOP
-) > "$HOME/.gemrc" || exit 55
+) > "/root/.gemrc" || exit 55
 fi
