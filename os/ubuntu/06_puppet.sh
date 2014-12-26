@@ -16,6 +16,8 @@ apt-get -y update >/tmp/puppet.update.log 2>&1 || exit 63
 
 # Install Puppet
 echo "3. Ensuring Puppet"
+
+rm -f /etc/puppet/puppet.conf
 rm -f /etc/hiera.yaml
 
 apt-get -y install hiera puppet-common="$PUPPET_PACKAGE" puppet="$PUPPET_PACKAGE" >/tmp/puppet.install.log 2>&1 || exit 64
@@ -24,7 +26,19 @@ chown -R root:puppet /var/lib/puppet || exit 65
 # Set up Hiera configuration
 mkdir -p /var/corl/config || exit 66
 
-echo "4. Configuring Hiera"
+echo "4. Configuring Puppet"
+( cat <<'EOP'
+[main]
+  logdir=/var/log/puppet
+  vardir=/var/lib/puppet
+  ssldir=/var/lib/puppet/ssl
+  rundir=/var/run/puppet
+  factpath=$vardir/lib/facter
+EOP
+) > /etc/puppet/puppet.conf || exit 67
+
+
+echo "5. Configuring Hiera"
   
 ( cat <<'EOP'
 ---
@@ -39,6 +53,6 @@ echo "4. Configuring Hiera"
 :hierarchy:
   - common
 EOP
-) > /etc/hiera.yaml || exit 67
+) > /etc/hiera.yaml || exit 68
 
-chmod 0440 /etc/hiera.yaml || exit 68
+chmod 0440 /etc/hiera.yaml || exit 69
