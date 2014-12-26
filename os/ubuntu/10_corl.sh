@@ -28,27 +28,3 @@ else
   echo "2. Installing latest release of CORL"
   su - -c "gem install corl" root >/tmp/corl.install.log 2>&1 || exit 102
 fi
-
-# Set up Hiera configuration
-mkdir -p /var/corl/config || exit 108
-
-if [ ! -e /etc/hiera.yaml ]
-then
-echo "5. Configuring Hiera"
-  
-( cat <<'EOP'
----
-:merge_behavior: deeper
-:backends:
-  - yaml
-  - json
-:yaml:
-  :datadir: /var/corl/config
-:json:
-  :datadir: /var/corl/config
-:hierarchy:
-  - common
-EOP
-) > /etc/hiera.yaml || exit 109
-chmod 0440 /etc/hiera.yaml || exit 110
-fi
