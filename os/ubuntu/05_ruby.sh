@@ -60,7 +60,7 @@ do
   fi
 done
 
-echo "5. Installing Rubinius -- this will take some time"
+echo "5. Installing Ruby version $RUBY_RVM_VERSION -- this might take some time"
 
 if [ -z "$RUBY_RVM_VERSION" ]
 then
