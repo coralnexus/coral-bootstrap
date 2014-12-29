@@ -54,18 +54,18 @@ initialize_rvm_user 'root'
 for USER_HOME in /home/*/
 do
   [[ "$USER_HOME" =~ ([^/]+)/?$ ]]
-  if [ "${BASH_REMATCH[1]}" != "lost+found" -a "${BASH_REMATCH[1]}" != "*" ]
+  if [ ! -L "${BASH_REMATCH[1]}" -a "${BASH_REMATCH[1]}" != "lost+found" -a "${BASH_REMATCH[1]}" != "*" ]
   then
     initialize_rvm_user "${BASH_REMATCH[1]}" '/home'
   fi
 done
 
-echo "5. Installing Ruby version $RUBY_RVM_VERSION -- this might take some time"
-
 if [ -z "$RUBY_RVM_VERSION" ]
 then
   RUBY_RVM_VERSION='ruby-2.1'
 fi
+
+echo "5. Installing Ruby version $RUBY_RVM_VERSION -- this might take some time"
 
 su - -c "rvm install $RUBY_RVM_VERSION" root >>/tmp/ruby.config.log 2>&1 || exit 54
 su - -c "rvm use $RUBY_RVM_VERSION --default" root >>/tmp/ruby.config.log 2>&1 || exit 55
