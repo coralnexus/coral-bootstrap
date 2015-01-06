@@ -1,13 +1,16 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 
-# Set hostname
-echo "1. Setting hostname"
-echo "$HOSTNAME" > "/etc/hostname" || exit 1
+if [ ! -f /.dockerinit ]
+then
+  # Set hostname
+  echo "1. Setting hostname"
+  echo "$HOSTNAME" > "/etc/hostname" || exit 1
 
-echo "2. Initializing hosts file"
-sed -ri 's/127\.0\.1\.1.*//' /etc/hosts
-echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
+  echo "2. Initializing hosts file"
+  sed -ri 's/127\.0\.1\.1.*//' /etc/hosts
+  echo "127.0.1.1 $HOSTNAME" >> /etc/hosts || exit 2
+fi
 
 # Set OpenDNS as our DNS lookup source
 echo "3. Setting command DNS gateways"
