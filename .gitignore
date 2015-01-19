@@ -5,7 +5,7 @@
 .project
 .buildpath
 .cache
-.corl
+.nucleon
 .project_cache
 build
 config/identities
