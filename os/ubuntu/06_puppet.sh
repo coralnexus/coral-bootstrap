@@ -34,6 +34,7 @@ echo "4. Configuring Puppet"
   ssldir=/var/lib/puppet/ssl
   rundir=/var/run/puppet
   factpath=$vardir/lib/facter
+  hiera_config=/etc.hiera.yaml
 EOP
 ) > /etc/puppet/puppet.conf || exit 67
 
