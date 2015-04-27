@@ -13,3 +13,13 @@ touch "/root/.ssh/known_hosts" || exit 12
 
 ssh-keygen -R github.com >/dev/null 2>&1 || exit 13 # No duplicates
 ssh-keyscan -H github.com >> "/root/.ssh/known_hosts" 2>/dev/null || exit 14
+
+echo "3. Adding default Git configurations"
+if [ -z "`git config --global user.name`" ]
+then
+  git config --global user.name "CoralNexus Machine"
+fi
+if [ -z "`git config --global user.email`" ]
+then
+  git config --global user.email "admin@coralnexus.com"
+fi
