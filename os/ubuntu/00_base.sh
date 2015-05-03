@@ -15,6 +15,7 @@ fi
 # Set OpenDNS as our DNS lookup source
 echo "3. Setting command DNS gateways"
 echo "nameserver 208.67.222.222" | tee /etc/resolvconf/resolv.conf.d/base > /dev/null || exit 3
+resolvconf -u || exit 4
 
 # Update system packages
 echo "4. Updating system packages"
